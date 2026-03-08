@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
+
 const Hero = () => {
   return (
     <section
-      className="relative bg-cover bg-center"
+      className="relative bg-cover bg-center min-h-[80vh]"
       style={{ backgroundImage: "url('/topvieweid.jpg')" }}
     >
-      <div className="bg-black/70">
+      <div className="bg-black/70 min-h-[80vh] flex items-center">
         <div className="max-w-7xl mx-auto px-4 py-28 text-center text-white">
           
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -19,14 +21,15 @@ const Hero = () => {
           </p>
 
           <div className="mt-8 flex justify-center gap-4">
-            <button className="bg-pink-400 text-black px-6 py-3 rounded-md font-semibold hover:scale-105 transition">
+            {/* Order Now Button */}
+            <Link href="/items" className="bg-pink-400 text-black px-6 py-3 rounded-md font-semibold hover:scale-105 transition inline-block">
               Order Now
-            </button>
+            </Link>
 
-            <button className="border border-blue-500 px-6 
-            py-3 rounded-md hover:bg-blue-400 hover:text-black transition">
+            {/* View Menu Button */}
+            <Link href="/items" className="border border-blue-500 px-6 py-3 rounded-md hover:bg-blue-400 hover:text-black transition inline-block">
               View Menu
-            </button>
+            </Link>
           </div>
 
         </div>

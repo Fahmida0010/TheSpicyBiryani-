@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const categories = [
@@ -103,10 +104,17 @@ const FeaturedItems = () => {
                     <span className="text-2xl font-bold text-amber-400">
                       ৳{item.price}
                     </span>
-
-                    <button className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-medium rounded-lg transition-colors shadow-md hover:shadow-lg">
-                      View Details
-                    </button>
+                 <Link href={`/items/${item._id}`} className="block mt-6">
+                <button className="w-full text-green-600 
+                hover:text-green-500 text-lg
+                 font-semibold py-3 px-6 rounded-xl
+                  transition-all duration-300 transform hover:scale-105 shadow-md flex items-center justify-center gap-2">
+                  <span>View Details</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </Link>
                   </div>
                 </div>
               </div>

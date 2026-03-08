@@ -34,7 +34,6 @@ export default function ManageItemsPage() {
     fetchItems();
   }, []);
 
-  // Swal-based Delete
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -84,52 +83,54 @@ export default function ManageItemsPage() {
 
   const closeModal = () => setModalItem(null);
 
-  if (loading) return <p className="p-10 text-center">Loading...</p>;
-
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">
       <Toaster />
-      <h1 className="text-3xl font-bold mb-8">Manage Items</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">Manage Items</h1>
 
-      {items.length === 0 ? (
-        <p>No items found.</p>
+      {loading ? (
+        <div className="space-y-4">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="animate-pulse flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 border border-gray-200 rounded p-4">
+              <div className="h-10 bg-gray-300 rounded w-full sm:w-1/4"></div>
+              <div className="h-10 bg-gray-300 rounded w-full sm:w-1/6"></div>
+              <div className="h-10 bg-gray-300 rounded w-full sm:w-1/6"></div>
+              <div className="h-10 bg-gray-300 rounded w-full sm:w-1/6"></div>
+              <div className="h-10 bg-gray-300 rounded w-full sm:w-1/6"></div>
+            </div>
+          ))}
+        </div>
+      ) : items.length === 0 ? (
+        <p className="text-gray-500 text-center">No items found.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 rounded-lg">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="py-2 px-4 border-b">Title</th>
-                <th className="py-2 px-4 border-b">Price</th>
-                <th className="py-2 px-4 border-b">Priority</th>
-                <th className="py-2 px-4 border-b">Date</th>
-                <th className="py-2 px-4 border-b">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map(item => (
-                <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="py-2 px-4 border-b">{item.title}</td>
-                  <td className="py-2 px-4 border-b">${item.price}</td>
-                  <td className="py-2 px-4 border-b">{item.priority}</td>
-                  <td className="py-2 px-4 border-b">{new Date(item.date).toLocaleDateString()}</td>
-                  <td className="py-2 px-4 border-b space-x-2">
-                    <button
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                      onClick={() => handleView(item._id)}
-                    >
-                      View
-                    </button>
-                    <button
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                      onClick={() => handleDelete(item._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid gap-6">
+          {items.map(item => (
+            <div key={item._id} className="bg-white border border-gray-200 rounded-lg shadow p-4 flex flex-col sm:flex-row sm:items-center justify-between space-y-4 sm:space-y-0">
+              
+              <div className="flex-1">
+                <h2 className="text-lg font-bold">{item.title}</h2>
+                <p className="text-gray-600 mt-1">{item.shortDescription}</p>
+                <p className="text-gray-500 text-sm mt-1">Date: {new Date(item.date).toLocaleDateString()}</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-2 sm:mt-0">
+                <span className="font-semibold text-green-700">${item.price}</span>
+                <span className="text-gray-600">{item.priority}</span>
+                <button
+                  className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
+                  onClick={() => handleView(item._id)}
+                >
+                  View
+                </button>
+                <button
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                  onClick={() => handleDelete(item._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 

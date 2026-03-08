@@ -11,7 +11,7 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-[#111827] text-white sticky top-0 z-50 shadow-md">
+    <nav className="bg-pink-200 text-black sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         
         <Logo />
@@ -28,11 +28,11 @@ const Navbar = () => {
           {session && (
             <>
               <Link href="/add-item" className="hover:text-yellow-400 transition">
-                Add Product
+                Add item
               </Link>
 
               <Link href="/manage-items" className="hover:text-yellow-400 transition">
-                Manage Products
+                Manage Items
               </Link>
             </>
           )}
@@ -58,7 +58,9 @@ const Navbar = () => {
               </button>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white text-black rounded-md shadow-lg p-4 space-y-3">
+                <div className="absolute right-0 mt-2 w-56
+                 bg-white text-black
+                 rounded-md shadow-lg p-4 space-y-3">
 
                   <p className="text-sm border-b pb-2">
                     {session.user?.email}
@@ -88,17 +90,18 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#1f2937] px-4 pb-4 flex flex-col gap-3">
+        <div className="md:hidden bg-white px-4
+        text-black pb-4 flex flex-col gap-3">
 
-          <Link href="/">Home</Link>
-          <Link href="/items">Menu</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
+          <Link className="hover:text-yellow-500" href="/">Home</Link>
+          <Link className="hover:text-yellow-500" href="/items">Menu</Link>
+          <Link className="hover:text-yellow-500" href="/about">About</Link>
+          <Link className="hover:text-yellow-500" href="/contact">Contact</Link>
 
           {session && (
             <>
-              <Link href="/add-item">Add Item</Link>
-              <Link href="/manage-items">Manage Items</Link>
+              <Link className="hover:text-yellow-500" href="/add-item">Add Item</Link>
+              <Link className="hover:text-yellow-500" href="/manage-items">Manage Items</Link>
             </>
           )}
 
@@ -113,7 +116,7 @@ const Navbar = () => {
 
               <button
                 onClick={() => signOut()}
-                className="text-red-400 text-left"
+                className="text-red-400 font-bold  text-left"
               >
                 Logout
               </button>

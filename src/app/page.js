@@ -4,6 +4,8 @@ import FeaturedItems from "./components/sections/FeaturedItems";
 import WhyChooseUs from "./components/sections/WhyChooseUs";
 import Testimonials from "./components/sections/Reviews";
 import SpecialOffer from "./components/sections/SpecialOffer";
+import ChefsPicks from "./components/ChefsPicks/ChefsPicks";
+import HowToOrder from "./components/HowToOrder/HowToOrder";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <WhyChooseUs />
       <Testimonials/>
       <SpecialOffer/>
+      <ChefsPicks/>
+      <HowToOrder/>
     </>
 
 

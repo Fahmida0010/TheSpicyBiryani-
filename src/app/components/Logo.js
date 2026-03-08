@@ -17,7 +17,7 @@ const Logo = () => {
         The Spicy
       </span>
 
-      <span className="text-2xl font-bold text-yellow-500">
+      <span className="text-2xl font-bold text-yellow-700">
         Biryani
       </span>
     </Link>
