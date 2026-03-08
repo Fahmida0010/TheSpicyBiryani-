@@ -1,37 +1,49 @@
 import ContactForm from "../components/ContactForm";
 
+
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-6">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50 text-gray-800 py-16 md:py-20 px-6 sm:px-8 lg:px-12">
       <div className="max-w-5xl mx-auto">
 
-        <h1 className="text-4xl font-bold text-yellow-400 mb-10 text-center">
+        <h1 className="text-5xl sm:text-6xl font-extrabold
+         text-pink-700 mb-12 md:mb-16 text-center leading-tight">
           Contact Us
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
 
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Restaurant Info</h2>
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-amber-800 mb-6">
+              Restaurant Info
+            </h2>
 
-            <p className="text-gray-300 mb-2">
-              📍 Location: Sylhet, Bangladesh
-            </p>
+            <div className="space-y-4 text-lg">
+              <p className="flex items-center gap-3">
+                <span className="text-2xl">📍</span>
+                <span>Location: Sylhet, Bangladesh</span>
+              </p>
 
-            <p className="text-gray-300 mb-2">
-              📞 Phone: +880 1234 567890
-            </p>
+              <p className="flex items-center gap-3">
+                <span className="text-2xl">📞</span>
+                <span>Phone: +880 1234 567890</span>
+              </p>
 
-            <p className="text-gray-300 mb-2">
-              📧 Email: spicybiryani@gmail.com
-            </p>
+              <p className="flex items-center gap-3">
+                <span className="text-2xl">📧</span>
+                <span>Email: spicybiryani@gmail.com</span>
+              </p>
+            </div>
 
-            <p className="text-gray-300 mt-4">
-              We would love to hear from you. Feel free to send us a message.
+            <p className="text-gray-700 mt-8 text-lg leading-relaxed">
+              We would love to hear from you. Whether you have a question, feedback, 
+              or just want to say hello — feel free to send us a message!
             </p>
           </div>
 
-          <ContactForm />
+          <div className="bg-white/70 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-amber-100">
+            <ContactForm />
+          </div>
 
         </div>
 

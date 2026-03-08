@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🍛 TheSpicyBiryani
 
-## Getting Started
+**TheSpicyBiryani** is a modern restaurant web application built with **Next.js**.
+It allows users to explore delicious biryani dishes, view detailed food items, and manage products through an admin-friendly dashboard. The platform provides a smooth and responsive user experience with authentication and dynamic data from MongoDB.
 
-First, run the development server:
+---
+
+## 🚀 Project Description
+
+TheSpicyBiryani is a full-stack restaurant website designed to showcase different food items such as biryani, drinks, and special offers.
+
+Users can:
+
+* Browse menu items
+* View detailed food information
+* Register and log in using Google authentication
+* See customer reviews
+* Explore special offers
+
+Admins can:
+
+* Add new food items
+* Manage existing products
+* Update or delete items
+
+The website is fully responsive and optimized for both desktop and mobile devices.
+
+---
+
+## ⚙️ Setup & Installation
+
+Follow these steps to run the project locally.
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/Fahmida0010/TheSpicyBiryani-.git
+```
+
+### 2️⃣ Go to the project folder
+
+```bash
+cd TheSpicyBiryani
+```
+
+### 3️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 4️⃣ Create environment variables
+
+Create a `.env.local` file in the root directory and add:
+
+```
+MONGODB_URI=your_mongodb_connection_string
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+### 5️⃣ Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Now open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🗂 Route Summary
 
-To learn more about Next.js, take a look at the following resources:
+| Route              | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| `/`                | Home page with banner, offers, and featured food    |
+| `/items`           | Shows all food items                                |
+| `/items/[id]`      | Displays detailed information about a selected item |
+| `/login`           | User login page                                     |
+| `/register`        | User registration page                              |
+| `/add-items`     |here  new food items   can be added                     |
+| `/manage-items` | here items can  be managed, updated, or deleted        |
+| `/contact`     | here  contact infro can be found                     |
+| `/about` | here he will see details info about the restaurant       |
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* **Next.js**
+* **Tailwind CSS**
+* **MongoDB**
+* **NextAuth.js**
+* **JavaScript**
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ✨ Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Responsive restaurant UI
+* Google authentication
+* Dynamic food menu
+* Customer review section
+* product management
+* MongoDB database integration
+
+---
+
+## 📌 Future Improvements
+
+* Online food ordering system
+* Payment gateway integration
+* User order history
+* Admin analytics dashboard
+
+---
+
+⭐ If you like this project, feel free to give it a star on GitHub!

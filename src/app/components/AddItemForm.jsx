@@ -61,7 +61,7 @@ const AddItemForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 p-10">
 
       <input
         name="title"

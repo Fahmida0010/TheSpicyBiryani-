@@ -9,7 +9,7 @@ export default function AddItemPage() {
 
       <Toaster />
 
-      <h1 className="text-3xl font-bold mb-10">
+      <h1 className="text-3xl font-bold mb-10 mx-6 ">
         Add New Food Item
       </h1>
 

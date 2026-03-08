@@ -23,7 +23,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-gray-950 to-gray-900 text-white overflow-hidden">
+    <section className="py-16 md:py-24 bg-gray-900 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-16 md:mb-20">

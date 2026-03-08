@@ -19,11 +19,12 @@ const Hero = () => {
           </p>
 
           <div className="mt-8 flex justify-center gap-4">
-            <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-semibold hover:scale-105 transition">
+            <button className="bg-pink-400 text-black px-6 py-3 rounded-md font-semibold hover:scale-105 transition">
               Order Now
             </button>
 
-            <button className="border border-yellow-400 px-6 py-3 rounded-md hover:bg-yellow-400 hover:text-black transition">
+            <button className="border border-blue-500 px-6 
+            py-3 rounded-md hover:bg-blue-400 hover:text-black transition">
               View Menu
             </button>
           </div>

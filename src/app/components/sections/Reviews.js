@@ -7,46 +7,100 @@ const Reviews = () => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    // API থেকে fetch
     fetch("/api/reviews")
-      .then(res => res.json())
-      .then(data => setReviews(data));
+      .then((res) => res.json())
+      .then((data) => setReviews(data))
+      .catch((err) => console.error("Reviews fetch error:", err));
   }, []);
 
-  // auto-slide effect
+  // Auto-slide
   useEffect(() => {
+    if (reviews.length <= 1) return;
+
     const interval = setInterval(() => {
-      setCurrent(prev => (prev + 1) % reviews.length);
-    }, 4000); // প্রতি 4 সেকেন্ডে change
+      setCurrent((prev) => (prev + 1) % reviews.length);
+    }, 5000); // 5 seconds — feels more relaxed
+
     return () => clearInterval(interval);
-  }, [reviews]);
+  }, [reviews.length]);
 
   if (!reviews.length) return null;
 
   const review = reviews[current];
 
   return (
-    <section className="py-20 bg-black text-white">
-      <div className="max-w-3xl mx-auto px-4 text-center">
-
-        <h2 className="text-3xl font-bold mb-12">
-          Customer <span className="text-yellow-400">Reviews</span>
-        </h2>
-
-        <div className="bg-[#1f2937] p-8 rounded-xl shadow-lg transition-all duration-500">
-
-          <div className="flex flex-col items-center gap-4 mb-4">
-            <img
-              src={review.image}
-              alt={review.name}
-              className="w-16 h-16 rounded-full object-cover"
-            />
-            <h4 className="font-semibold text-lg">{review.name}</h4>
-          </div>
-
-          <p className="text-gray-300 text-sm">{review.comment}</p>
+    <section className="py-16 md:py-20 bg-gray-50">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
+        {/* Heading */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            What Our Customers Say
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Real stories from people who love our food
+          </p>
         </div>
 
+        {/* Review Card */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-500">
+          <div className="p-8 md:p-10 text-center">
+            {/* Avatar + Name */}
+            <div className="flex flex-col items-center gap-4 mb-6">
+              <div className="relative">
+                <img
+                  src={review.image}
+                  alt={review.name}
+                  className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md"
+                />
+                {/* Optional small badge or icon */}
+                <span className="absolute -bottom-1 -right-1 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                  ★★★★★
+                </span>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-semibold text-gray-900">
+                  {review.name}
+                </h4>
+                <p className="text-sm text-gray-500 mt-1">
+                  {review.location || "Happy Customer"}
+                </p>
+              </div>
+            </div>
+
+            {/* Comment */}
+            <blockquote className="text-gray-700 text-lg leading-relaxed italic mb-8">
+              “{review.comment}”
+            </blockquote>
+
+            {/* Optional: Stars row if you want to show separately */}
+            {/* <div className="flex justify-center gap-1 text-yellow-400 mb-6">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-6 h-6 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.5 7.41l6.56-.955L10 .5l2.94 5.955 6.56.955-4.745 4.135 1.123 6.545z" />
+                </svg>
+              ))}
+            </div> */}
+          </div>
+        </div>
+
+        {/* Navigation Dots */}
+        {reviews.length > 1 && (
+          <div className="flex justify-center gap-3 mt-10">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  current === index
+                    ? "bg-blue-600 scale-125"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to review ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
