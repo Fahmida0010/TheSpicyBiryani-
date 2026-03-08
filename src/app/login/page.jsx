@@ -4,10 +4,12 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // ✅ Eye toggle state
 
   const handleCredentialsLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const LoginPage = () => {
       redirect: false,
     });
 
-    if (res.ok) {
+    if (res?.ok) {
       router.push("/");
     } else {
       setError("Invalid email or password");
@@ -55,13 +57,23 @@ const LoginPage = () => {
             className="w-full p-3 rounded-md bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-            className="w-full p-3 rounded-md bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
-          />
+          {/* Password with Eye Toggle */}
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              required
+              className="w-full p-3 pr-10 rounded-md bg-gray-800 border border-gray-600 focus:outline-none focus:border-yellow-400"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
           <button
             type="submit"
@@ -71,7 +83,6 @@ const LoginPage = () => {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="my-6 text-center text-gray-400">OR</div>
 
         {/* Google Login */}

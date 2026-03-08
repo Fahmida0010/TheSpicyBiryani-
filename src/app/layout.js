@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Biryani Restu",
+  title: "TheSpicyBiryani",
   description: "Premium Biryani Restaurant",
 };
 

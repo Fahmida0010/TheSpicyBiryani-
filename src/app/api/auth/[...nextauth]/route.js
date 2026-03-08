@@ -1,13 +1,52 @@
 import clientPromise from "@/lib/mongodb";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 
 export const authOptions = {
   providers: [
+
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {},
+        password: {},
+      },
+
+      async authorize(credentials) {
+
+        const client = await clientPromise;
+        const db = client.db("TheSpicyBiryani");
+
+        const user = await db.collection("users").findOne({
+          email: credentials.email,
+        });
+
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isPasswordValid) {
+          throw new Error("Wrong password");
+        }
+
+        return {
+          id: user._id,
+          name: user.fullName,
+          email: user.email,
+        };
+      },
     }),
   ],
 
@@ -38,6 +77,10 @@ export const authOptions = {
 
   pages: {
     signIn: "/login",
+  },
+
+  session: {
+    strategy: "jwt",
   },
 
   secret: process.env.NEXTAUTH_SECRET,
