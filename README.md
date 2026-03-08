@@ -86,8 +86,8 @@ http://localhost:3000
 | `/register`        | User registration page                              |
 | `/add-items`     |here  new food items   can be added                     |
 | `/manage-items` | here items can  be managed, updated, or deleted        |
-| `/contact`     | here  contact infro can be found                     |
-| `/about` | here he will see details info about the restaurant       |
+| `/contact`     | here  contact info can be found                     |
+| `/about` | here you will see details info about the restaurant       |
 ---
 
 ## 🛠 Technologies Used
