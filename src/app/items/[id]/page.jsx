@@ -2,8 +2,12 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSession, signIn } from "next-auth/react";
 
 export default function ItemDetailsPage() {
+
+  const { data: session } = useSession();
+
   const params = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,17 +27,38 @@ export default function ItemDetailsPage() {
     fetchItem();
   }, [params.id]);
 
-  // Skeleton UI for loading
+  const handleOrder = async () => {
+
+    if (!session) {
+      alert("Please login first");
+      signIn();
+      return;
+    }
+
+    const res = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: session.user.name,
+        email: session.user.email,
+        title: item.title,
+        category: item.category,
+        price: item.price
+      })
+    });
+
+    const data = await res.json();
+
+    window.location.href = data.url;
+  };
+
+
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto p-6 space-y-4">
         <div className="w-full h-96 bg-gray-300 animate-pulse rounded"></div>
-        <div className="h-8 w-3/4 bg-gray-300 animate-pulse rounded"></div>
-        <div className="space-y-2">
-          <div className="h-4 w-full bg-gray-300 animate-pulse rounded"></div>
-          <div className="h-4 w-full bg-gray-300 animate-pulse rounded"></div>
-          <div className="h-4 w-2/3 bg-gray-300 animate-pulse rounded"></div>
-        </div>
       </div>
     );
   }
@@ -44,7 +69,7 @@ export default function ItemDetailsPage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-4">
-      {/* Full image without zoom cropping */}
+
       <img
         src={item.image || "/placeholder.png"}
         alt={item.title}
@@ -52,26 +77,34 @@ export default function ItemDetailsPage() {
       />
 
       <h1 className="text-3xl font-bold mt-2">{item.title}</h1>
-      <p className="mt-2 text-gray-600 leading-relaxed">{item.full_description}</p>
+
+      <p className="mt-2 text-gray-600">{item.full_description}</p>
 
       <div className="mt-4 space-y-2">
         <p>
-          <span className="font-semibold text-blue-600">Price:</span>{" "}
-          <span className="text-gray-800">${item.price}</span>
+          <span className="font-semibold text-blue-600">Price:</span> ${item.price}
         </p>
+
         <p>
-          <span className="font-semibold text-purple-600">Category:</span>{" "}
-          <span className="text-gray-800">{item.category}</span>
+          <span className="font-semibold text-purple-600">Category:</span> {item.category}
         </p>
+
         <p>
-          <span className="font-semibold text-green-600">Priority:</span>{" "}
-          <span className="text-gray-800">{item.priority}</span>
+          <span className="font-semibold text-green-600">Priority:</span> {item.priority}
         </p>
+
         <p>
-          <span className="font-semibold text-orange-600">Date:</span>{" "}
-          <span className="text-gray-800">{item.date}</span>
+          <span className="font-semibold text-orange-600">Date:</span> {item.date}
         </p>
       </div>
+
+      <button
+        onClick={handleOrder}
+        className="mt-6 px-6 py-3 bg-black text-white rounded hover:bg-gray-800"
+      >
+        Order Now
+      </button>
+
     </div>
   );
 }

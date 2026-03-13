@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 
 
 Live Link : https://the-spicy-biryani.vercel.app
+=======
+Demo Admin_Email=tafia@gmail.com
+Demo Admin_password=Tafia26@#
+
+
+>>>>>>> 86dd6d1 (admin role added)
 # 🍛 TheSpicyBiryani
 
 **TheSpicyBiryani** is a modern restaurant web application built with **Next.js**.

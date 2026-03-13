@@ -34,6 +34,7 @@ export async function POST(req) {
       fullName,
       email,
       password: hashedPassword,
+      role:"user"
     });
 
     return Response.json(
